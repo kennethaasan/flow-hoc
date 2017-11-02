@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import type { HOC } from 'recompose';
 import type { Options } from './types';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
