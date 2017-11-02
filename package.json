@@ -9,7 +9,7 @@
     "eject": "react-scripts eject",
     "flow": "flow",
     "prettier": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
-    "precommit": "flow && lint-staged"
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "flow-bin": "^0.58.0",
