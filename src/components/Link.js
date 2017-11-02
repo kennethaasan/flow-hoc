@@ -17,18 +17,14 @@ class Link extends Component<
     options: Options,
   }
 > {
-  static defaultProps = {
-    className: 'default-className',
-  };
-
   render() {
-    const { to, className, options } = this.props;
+    const { to, className = 'default-className', options } = this.props;
 
     console.log(this.props);
 
     return (
       <a href={to} className={className} style={{ display: 'block' }}>
-        {`${to} ${options.language}`}
+        {`${to} ${options.language} ${className}`}
       </a>
     );
   }
