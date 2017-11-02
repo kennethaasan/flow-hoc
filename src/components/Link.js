@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import type { HigherOrderComponent } from 'react-flow-types';
 import type { Options } from './types';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -27,10 +28,13 @@ class Link extends Component<LinkProps> {
   }
 }
 
-function withOptions<Props: {}>(
-  Component: React.ComponentType<Props>
-): React.ComponentType<$Diff<Props, { options: Options }>> {
-  function WrapperComponent(props: Props, context: { options: Options }) {
+const withOptions = (): HigherOrderComponent<
+  {},
+  {
+    options: Options,
+  }
+> => (Component): any => {
+  function WrapperComponent(props, context: { options: Options }) {
     return <Component {...props} options={context.options} />;
   }
 
@@ -39,6 +43,6 @@ function withOptions<Props: {}>(
   };
 
   return WrapperComponent;
-}
+};
 
-export default withOptions(Link);
+export default withOptions()(Link);
