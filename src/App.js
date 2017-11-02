@@ -9,11 +9,9 @@ class App extends Component<{}> {
     return (
       <Options>
         <div>
-          <header>
-            <h1>Kenneth Flow</h1>
-          </header>
-          <Link to="https://vg.no" />
-          <Link to="https://vg.no" className="kenneth-flow" />
+          <h1>Flow HOC</h1>
+          <Link to="https://flow.org" />
+          <Link to="https://flow.org" className="custom-className" />
         </div>
       </Options>
     );

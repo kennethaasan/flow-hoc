@@ -4,23 +4,21 @@ import * as React from 'react';
 import type { HOC } from 'recompose';
 import type { Options } from './types';
 import { Component } from 'react';
-import { compose, getContext } from 'recompose';
 import PropTypes from 'prop-types';
 
 type LinkProps = {
   to: string,
-  className?: string,
+  className: string,
+  options: Options,
 };
 
-class Link extends Component<
-  LinkProps & {
-    options: Options,
-  }
-> {
-  render() {
-    const { to, className = 'default-className', options } = this.props;
+class Link extends Component<LinkProps> {
+  static defaultProps = {
+    className: 'default-className',
+  };
 
-    console.log(this.props);
+  render() {
+    const { to, className, options } = this.props;
 
     return (
       <a href={to} className={className} style={{ display: 'block' }}>
@@ -30,10 +28,18 @@ class Link extends Component<
   }
 }
 
-const withOptions: HOC<*, LinkProps> = compose(
-  getContext({
+function withOptions<Props: {}>(
+  Component: React.ComponentType<Props>
+): React.ComponentType<$Diff<Props, { options: Options }>> {
+  function WrapperComponent(props: Props, context: { options: Options }) {
+    return <Component {...props} options={context.options} />;
+  }
+
+  WrapperComponent.contextTypes = {
     options: PropTypes.object.isRequired,
-  })
-);
+  };
+
+  return WrapperComponent;
+}
 
 export default withOptions(Link);

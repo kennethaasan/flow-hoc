@@ -21,7 +21,7 @@ class Options extends Component<Props, State> {
 
   state = {
     options: {
-      language: 'en',
+      language: 'en_US',
     },
   };
 
